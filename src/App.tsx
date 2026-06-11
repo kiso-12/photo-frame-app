@@ -32,6 +32,11 @@ export default function App() {
             className="bg-blue-500 border border-white/50 text-white px-3 py-1 rounded text-sm hover:bg-blue-400 disabled:opacity-40">
             ▶ スライドショー
           </button>
+          <button
+            onClick={() => { if (confirm('写真とアルバムをすべて削除しますか？')) { localStorage.clear(); location.reload() } }}
+            className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
+            🗑 リセット
+          </button>
         </div>
       </header>
 
