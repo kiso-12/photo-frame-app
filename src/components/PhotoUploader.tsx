@@ -15,6 +15,7 @@ export function PhotoUploader({ albums, defaultAlbumId, onAdd, onClose }: Props)
 
   const handleFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? [])
+    if (files.length === 0) return
     files.forEach(file => {
       const reader = new FileReader()
       reader.onload = ev => onAdd(ev.target!.result as string, 'file', file.name, albumId)

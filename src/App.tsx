@@ -9,7 +9,7 @@ import { Slideshow } from './components/Slideshow'
 
 export default function App() {
   const { albums, add: addAlbum, remove: removeAlbum } = useAlbums()
-  const { photos, add: addPhoto, remove: removePhoto, updateFrame, reorder } = usePhotos()
+  const { photos, add: addPhoto, remove: removePhoto, updateFrame, reorder, clearAll } = usePhotos()
   const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null)
   const [uploaderOpen, setUploaderOpen] = useState(false)
   const [viewerIndex, setViewerIndex] = useState<number | null>(null)
@@ -33,7 +33,7 @@ export default function App() {
             ▶ スライドショー
           </button>
           <button
-            onClick={() => { if (confirm('写真とアルバムをすべて削除しますか？')) { localStorage.clear(); location.reload() } }}
+            onClick={async () => { if (confirm('写真とアルバムをすべて削除しますか？')) { await clearAll(); localStorage.removeItem('albums'); location.reload() } }}
             className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
             🗑 リセット
           </button>
